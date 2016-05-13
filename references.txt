@@ -1,2 +1,8 @@
 http://www.had2know.com/academics/normal-distribution-table-z-scores.html
 https://cran.r-project.org/web/packages/tigerstats/vignettes/qnorm.html
+http://ncalculators.com/statistics/mean-standard-deviation-calculator.htm
+http://ncalculators.com/math-worksheets/calculate-standard-error.htm
+https://en.wikipedia.org/wiki/Standard_deviation
+http://www.had2know.com/academics/normal-distribution-table-z-scores.html
+http://www.evanmiller.org/ab-testing/sample-size.html
+http://graphpad.com/quickcalcs/binomial1.cfm
