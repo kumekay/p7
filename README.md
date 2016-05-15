@@ -18,10 +18,10 @@ Experiment Design
 #### Selection reasoning
 
 -	**Number of cookies:** Good invariant, used as unit of diverse.
--	**Number of user-ids:** We are using cookies as unit of diversion in this experiment, so this metric will not be robust invariant. And it's not good for evaluation because this experiment has different focus.
--	**Number of clicks:** Because this action happens right before our experiment this metric should be good invariant
--	**Click-through-probability:** This metric is worthwhile as invariant, but it's highly correlated with two other metrics, so I will not use it.
--	**Gross conversion:** This is important evaluation metric for our experiment, because it depends directly on number of enrolments.
+-	**Number of user-ids:** We are using cookies as unit of diversion in this experiment, so this metric will not be robust invariant. Although it is possible to use user-ids as evaluation metric, it's not very good, because it's not normalized.
+-	**Number of clicks:** Because this action happens right before our experiment this metric should be good invariant.
+-	**Click-through-probability:** This metric is worthwhile as invariant. May be it even better than number of clicks, because it normalized for each group of users, but it's highly correlated with two other metrics that I already using, so I will not use it.
+-	**Gross conversion:** This is important evaluation metric for our experiment, because it depends directly on number of enrollments.
 -	**Retention:** Is a good evaluation metric, because number of paying users is may be affected and we have interest in this change.
 -	**Net conversion:** Because we want to reduce the number of frustrated students and increase percent of paying users, this metric is obvious chose for evaluation.
 
@@ -32,7 +32,7 @@ As will be shown later **Retention** is hard to use, because to measure it we ne
 After the experiment, to make decision to launch the change
 
 -	**Gross conversion:** Should significantly decrease (Number of trials should be lower)
--	**Net conversion:** Should significantly increase (Number of paying customers higher)
+-	**Net conversion:** Should not significantly decrease (Number of paying customers should not be lower)
 
 ### Measuring Standard Deviation
 
@@ -44,7 +44,7 @@ After the experiment, to make decision to launch the change
 -	**Retention:** 0.0549
 -	**Net conversion:** 0.0156
 
-Empirical Standard deviation should be comparable to analytic estimate for Gross and Net conversion because unit of diversion and unit of analysis is the same - cookie. To calculate Retention we use user-id based number of enrollment, but analyse data on cookie based on cookie, so empirical estimate may differ from analytical.
+Empirical Standard deviation should be comparable to analytic estimate for Gross and Net conversion because unit of diversion and unit of analysis is the same - cookie. To calculate Retention we use user-id based number of enrollment, but analyze data on cookie based on cookie, so empirical estimate may differ from analytical.
 
 ### Sizing
 
@@ -58,7 +58,7 @@ Empirical Standard deviation should be comparable to analytic estimate for Gross
 | Retention        | 0.5300 | 0.0194 | 0.0549    | 39115       | 0.0165      | 4741212   |
 | Net conversion   | 0.1093 | 0.0055 | 0.0156    | 27413       | 0.0800      | 685325    |
 
-I will not use Bonferroni correction, because we use just 2 metrics which are tied together (highly correlated), and it will be quite conservative.
+I will not use Bonferroni correction, because we use just 2 metrics which are tied together (highly correlated) and we expect that both our metrics will have statistical significance, so it will be quite conservative to use Bonferroni correction.
 
 #### Duration vs. Exposure
 
@@ -126,7 +126,7 @@ Total number of days: **23**
 
 All calculations for this project are presented in this spreadsheet https://docs.google.com/spreadsheets/d/17Gu5Zuhc_k5g28RHxch92jE3sBskZ-8pom95Y8wgY2w/edit?usp=sharing
 
-I did not use Bonferroni correction because I have only two correlated metrics and multiple comparison is not a problem here.
+I did not use Bonferroni correction because I have only two correlated metrics, and to make final decision to launch or not launch experiment, both our metrics should much expectations, so the risk to reject null hypothesis is still 5%. Bonferroni correction is designed for another type of errors, for example, it can help us if planned to launch experiment if one or another metric became statistically significant.
 
 There are no discrepancies between effect size and sign tests.
 
@@ -134,7 +134,7 @@ There are no discrepancies between effect size and sign tests.
 
 > Make a recommendation and briefly describe your reasoning.
 
-I will not recommend to launch this experiment. Although **Gross conversion** significantly reduced, **Net conversion** didn't show statistically significant change, so this change doesn't worthy for the company, and it don't affect to revenue.
+I will not recommend to launch this experiment. **Gross conversion** significantly reduced, that is what we expected, but **Net conversion** didn't show both statistically and practically significant change, and more important that the confidence interval bounds are negative and the practical significance boundary (with minus sign) is included to these boundaries. It means, that there is some risk that launch of this change will decrease the net conversion metric (and revenue). Such change is not desirable for the company, and experiment is risky to launch.
 
 Follow-Up Experiment
 --------------------
@@ -157,4 +157,7 @@ References
 -	http://ncalculators.com/math-worksheets/calculate-standard-error.htm
 -	https://en.wikipedia.org/wiki/Standard_deviation
 -	http://www.had2know.com/academics/normal-distribution-table-z-scores.html
--	http://www.evanmiller.org/ab-testing/sample-size.html http://graphpad.com/quickcalcs/binomial1.cfm
+-	http://www.evanmiller.org/ab-testing/sample-size.html
+-	http://graphpad.com/quickcalcs/binomial1.cfm
+-	http://www.stat.berkeley.edu/~mgoldman/Section0402.pdf
+-	http://www.utdallas.edu/~herve/Abdi-Bonferroni2007-pretty.pdf
